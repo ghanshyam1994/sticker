@@ -12,27 +12,26 @@
  * License: GPL-2.0-or-later
  * Text Domain: sticker
  *
- * @package Sticker
  */
 
 defined( 'ABSPATH' ) || exit;
 
-add_action(
-	'before_woocommerce_init',
-	static function () {
-		if ( class_exists( '\Automattic\WooCommerce\Utilities\FeaturesUtil' ) ) {
-			\Automattic\WooCommerce\Utilities\FeaturesUtil::declare_compatibility( 'custom_order_tables', __FILE__, true );
-			\Automattic\WooCommerce\Utilities\FeaturesUtil::declare_compatibility( 'cart_checkout_blocks', __FILE__, true );
-		}
+function sticker_declare_compatibility() {
+	if ( ! class_exists( '\Automattic\WooCommerce\Utilities\FeaturesUtil' ) ) {
+		return;
 	}
-);
 
-add_action(
-	'plugins_loaded',
-	static function () {
-		if ( class_exists( 'WooCommerce' ) ) {
-			require_once __DIR__ . '/includes/class-sticker-discount.php';
-			\Sticker\Discount::init();
-		}
+	\Automattic\WooCommerce\Utilities\FeaturesUtil::declare_compatibility( 'custom_order_tables', __FILE__, true );
+	\Automattic\WooCommerce\Utilities\FeaturesUtil::declare_compatibility( 'cart_checkout_blocks', __FILE__, true );
+}
+add_action( 'before_woocommerce_init', 'sticker_declare_compatibility' );
+
+function sticker_init() {
+	if ( ! class_exists( 'WooCommerce' ) ) {
+		return;
 	}
-);
+
+	require_once __DIR__ . '/includes/class-sticker-discount.php';
+	\Sticker\Discount::init();
+}
+add_action( 'plugins_loaded', 'sticker_init' );
