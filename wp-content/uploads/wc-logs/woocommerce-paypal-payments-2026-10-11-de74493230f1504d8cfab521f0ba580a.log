@@ -86,3 +86,5 @@
 2026-10-11T03:51:44+00:00 ERROR #8334 - SDK v6 client token runtime error: Cannot request a PayPal client token without a client ID and secret.
 2026-10-11T03:51:50+00:00 DEBUG #7071 - [New Request] POST /sticker/
 2026-10-11T03:51:50+00:00 ERROR #7071 - SDK v6 client token runtime error: Cannot request a PayPal client token without a client ID and secret.
+2026-10-11T03:51:52+00:00 DEBUG #9006 - [New Request] POST /sticker/
+2026-10-11T03:51:52+00:00 ERROR #9006 - SDK v6 client token runtime error: Cannot request a PayPal client token without a client ID and secret.
